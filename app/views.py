@@ -31,7 +31,7 @@ def StudentView(request):
             place=place
         )
 
-        # messages.success(request, "Photo uploaded successfully!")
+        # messages.success(request, "Photo   uploaded successfully!")
         return redirect("stu")
 
     studata = Student.objects.all()  # Show latest first
