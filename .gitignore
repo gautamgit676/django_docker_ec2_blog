@@ -1,6 +1,18 @@
+__pycache__/
+*.pyc
 .env
-db.sqlite3
-.DS_Store
-.pyc
+
+
+
+# Python
 __pycache__/
 *.py[cod]
+
+# Environment
+.env
+
+# Django
+db.sqlite3
+
+# Static
+staticfiles/
