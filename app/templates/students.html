@@ -1,0 +1,204 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>Student Photo Gallery</title>
+
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+```
+
+</head>
+
+<body>
+
+```
+<!-- Animated Background -->
+<div class="background-shape shape-one"></div>
+<div class="background-shape shape-two"></div>
+
+<main class="container">
+
+    <!-- Header -->
+    <header class="hero">
+        <p class="subtitle">📸 Welcome to</p>
+        <h1>Student Photo Gallery</h1>
+        <p class="description">
+            Upload and explore beautiful student photos
+        </p>
+    </header>
+
+
+    <!-- Upload Section -->
+    <section class="upload-card">
+
+        <div class="upload-icon">
+            📷
+        </div>
+
+        <h2>Upload New Photo</h2>
+
+        <p class="upload-description">
+            Add a photo with a title and location
+        </p>
+
+        <form method="post" enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            <div class="form-group">
+
+                <label for="name">
+                    Photo Title
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Enter photo title"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="place">
+                    Location
+                </label>
+
+                <input
+                    type="text"
+                    id="place"
+                    name="place"
+                    placeholder="Enter place"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="image">
+                    Select Photo
+                </label>
+
+                <input
+                    type="file"
+                    id="image"
+                    name="image"
+                    accept="image/*"
+                    required
+                >
+
+            </div>
+
+
+            <button type="submit" class="upload-btn">
+                <span>📤</span>
+                Upload Photo
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+
+        <div class="section-header">
+
+            <div>
+                <p class="section-label">
+                    COLLECTION
+                </p>
+
+                <h2>
+                    Latest Photos
+                </h2>
+            </div>
+
+            <div class="photo-count">
+                📸 {{ studata|length }} Photos
+            </div>
+
+        </div>
+
+
+        <!-- Gallery -->
+        <div class="gallery">
+
+            {% for photo in studata %}
+
+            <article class="card">
+
+                <!-- Image -->
+                <div class="image-container">
+
+                    <img
+                        src="{{ photo.image.url }}"
+                        alt="{{ photo.name }}"
+                    >
+
+                    <div class="image-overlay">
+                        <span>🔍 View Photo</span>
+                    </div>
+
+                </div>
+
+
+                <!-- Card Content -->
+                <div class="card-content">
+
+                    <h3>
+                        {{ photo.name }}
+                    </h3>
+
+                    <div class="location">
+                        <span>📍</span>
+                        <span>{{ photo.place }}</span>
+                    </div>
+
+                </div>
+
+            </article>
+
+            {% empty %}
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    📷
+                </div>
+
+                <h3>
+                    No Photos Yet
+                </h3>
+
+                <p>
+                    Upload your first photo to start your gallery.
+                </p>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+</main>
+```
+
+</body>
+</html>

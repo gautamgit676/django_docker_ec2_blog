@@ -1,3 +1,715 @@
-body{
-    background-color: blueviolet;
+/* body{
+    background-color: rgb(63, 141, 14);
+} */
+img {
+    height: 100px;
+    width: 400px;
+} 
+
+/* ================================
+GLOBAL
+================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  }
+
+body {
+font-family: "Segoe UI", Arial, sans-serif;
+min-height: 100vh;
+color: #1f2937;
+background: linear-gradient(
+135deg,
+#667eea 0%,
+#764ba2 50%,
+#f093fb 100%
+);
+
+
+overflow-x: hidden;
+
+
+}
+
+/* ================================
+BACKGROUND DECORATION
+================================ */
+
+.background-shape {
+position: fixed;
+border-radius: 50%;
+filter: blur(80px);
+opacity: 0.5;
+z-index: -1;
+animation: float 8s ease-in-out infinite;
+}
+
+.shape-one {
+width: 300px;
+height: 300px;
+background: #00f2fe;
+top: 5%;
+left: -100px;
+}
+
+.shape-two {
+width: 350px;
+height: 350px;
+background: #ff00cc;
+bottom: 5%;
+right: -100px;
+animation-delay: 2s;
+}
+
+@keyframes float {
+
+
+0%,
+100% {
+    transform: translateY(0) scale(1);
+}
+
+50% {
+    transform: translateY(-30px) scale(1.1);
+}
+
+
+}
+
+/* ================================
+MAIN CONTAINER
+================================ */
+
+.container {
+width: 90%;
+max-width: 1200px;
+margin: auto;
+padding: 60px 0;
+}
+
+/* ================================
+HERO
+================================ */
+
+.hero {
+text-align: center;
+color: white;
+margin-bottom: 45px;
+animation: fadeDown 0.8s ease;
+}
+
+.subtitle {
+font-size: 18px;
+font-weight: 600;
+margin-bottom: 10px;
+}
+
+.hero h1 {
+font-size: clamp(36px, 6vw, 64px);
+font-weight: 800;
+letter-spacing: -2px;
+margin-bottom: 15px;
+}
+
+.description {
+font-size: 18px;
+opacity: 0.9;
+}
+
+/* ================================
+UPLOAD CARD
+================================ */
+
+.upload-card {
+max-width: 650px;
+margin: 0 auto 70px;
+
+
+padding: 40px;
+
+background: rgba(255, 255, 255, 0.92);
+
+border: 1px solid rgba(255, 255, 255, 0.5);
+
+border-radius: 25px;
+
+box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.2);
+
+backdrop-filter: blur(15px);
+
+animation: fadeUp 0.8s ease;
+
+
+}
+
+.upload-icon {
+width: 70px;
+height: 70px;
+
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+margin: 0 auto 20px;
+
+font-size: 32px;
+
+border-radius: 20px;
+
+background: linear-gradient(
+    135deg,
+    #667eea,
+    #764ba2
+);
+
+box-shadow:
+    0 10px 25px rgba(102, 126, 234, 0.4);
+
+
+}
+
+.upload-card h2 {
+text-align: center;
+font-size: 28px;
+margin-bottom: 8px;
+}
+
+.upload-description {
+text-align: center;
+color: #6b7280;
+margin-bottom: 30px;
+}
+
+/* ================================
+FORM
+================================ */
+
+.form-group {
+margin-bottom: 20px;
+}
+
+.form-group label {
+display: block;
+font-weight: 600;
+margin-bottom: 8px;
+color: #374151;
+}
+
+.form-group input[type="text"],
+.form-group input[type="file"] {
+
+
+width: 100%;
+
+padding: 14px 16px;
+
+border: 2px solid #e5e7eb;
+
+border-radius: 12px;
+
+background: #f9fafb;
+
+font-size: 15px;
+
+transition: all 0.3s ease;
+
+
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="file"]:focus {
+
+
+outline: none;
+
+border-color: #667eea;
+
+background: white;
+
+box-shadow:
+    0 0 0 4px rgba(102, 126, 234, 0.15);
+
+
+}
+
+/* ================================
+UPLOAD BUTTON
+================================ */
+
+.upload-btn {
+
+
+width: 100%;
+
+padding: 15px;
+
+border: none;
+
+border-radius: 12px;
+
+color: white;
+
+font-size: 16px;
+
+font-weight: 700;
+
+cursor: pointer;
+
+background: linear-gradient(
+    135deg,
+    #667eea,
+    #764ba2
+);
+
+box-shadow:
+    0 10px 25px rgba(102, 126, 234, 0.35);
+
+transition: all 0.3s ease;
+
+
+}
+
+.upload-btn span {
+margin-right: 8px;
+}
+
+.upload-btn:hover {
+
+
+transform: translateY(-3px);
+
+box-shadow:
+    0 15px 30px rgba(102, 126, 234, 0.5);
+
+
+}
+
+.upload-btn:active {
+transform: translateY(0);
+}
+
+/* ================================
+GALLERY SECTION
+================================ */
+
+.gallery-section {
+animation: fadeUp 1s ease;
+}
+
+.section-header {
+
+
+display: flex;
+
+justify-content: space-between;
+
+align-items: center;
+
+margin-bottom: 30px;
+
+color: white;
+
+
+}
+
+.section-label {
+
+
+font-size: 13px;
+
+font-weight: 700;
+
+letter-spacing: 3px;
+
+opacity: 0.8;
+
+margin-bottom: 5px;
+
+
+}
+
+.section-header h2 {
+
+
+font-size: 36px;
+
+font-weight: 800;
+
+
+}
+
+.photo-count {
+
+
+padding: 10px 18px;
+
+background: rgba(255, 255, 255, 0.2);
+
+border: 1px solid rgba(255, 255, 255, 0.3);
+
+border-radius: 30px;
+
+backdrop-filter: blur(10px);
+
+
+}
+
+/* ================================
+GALLERY GRID
+================================ */
+
+.gallery {
+
+
+display: grid;
+
+grid-template-columns:
+    repeat(auto-fill, minmax(280px, 1fr));
+
+gap: 25px;
+
+
+}
+
+/* ================================
+PHOTO CARD
+================================ */
+
+.card {
+
+
+background: white;
+
+border-radius: 20px;
+
+overflow: hidden;
+
+box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.15);
+
+transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+
+animation: cardAppear 0.6s ease both;
+
+
+}
+
+.card:hover {
+
+
+transform: translateY(-10px);
+
+box-shadow:
+    0 25px 50px rgba(0, 0, 0, 0.25);
+
+
+}
+
+/* ================================
+IMAGE
+================================ */
+
+.image-container {
+
+
+position: relative;
+
+width: 100%;
+
+height: 280px;
+
+overflow: hidden;
+
+background: #f3f4f6;
+
+
+}
+
+.image-container img {
+
+
+width: 100%;
+
+height: 100%;
+
+display: block;
+
+object-fit: cover;
+
+transition:
+    transform 0.6s ease;
+
+
+}
+
+.card:hover .image-container img {
+
+
+transform: scale(1.1);
+
+
+}
+
+/* ================================
+IMAGE OVERLAY
+================================ */
+
+.image-overlay {
+
+
+position: absolute;
+
+inset: 0;
+
+display: flex;
+
+align-items: center;
+
+justify-content: center;
+
+background: rgba(0, 0, 0, 0.45);
+
+color: white;
+
+font-size: 18px;
+
+font-weight: 600;
+
+opacity: 0;
+
+transition: opacity 0.4s ease;
+
+
+}
+
+.card:hover .image-overlay {
+
+
+opacity: 1;
+
+
+}
+
+/* ================================
+CARD CONTENT
+================================ */
+
+.card-content {
+
+
+padding: 20px;
+
+
+}
+
+.card-content h3 {
+
+
+font-size: 21px;
+
+color: #1f2937;
+
+margin-bottom: 12px;
+
+white-space: nowrap;
+
+overflow: hidden;
+
+text-overflow: ellipsis;
+
+
+}
+
+.location {
+
+
+display: inline-flex;
+
+align-items: center;
+
+gap: 6px;
+
+padding: 7px 12px;
+
+border-radius: 20px;
+
+background: #f3f4ff;
+
+color: #667eea;
+
+font-size: 14px;
+
+font-weight: 600;
+
+
+}
+
+/* ================================
+EMPTY STATE
+================================ */
+
+.empty {
+
+
+grid-column: 1 / -1;
+
+text-align: center;
+
+padding: 70px 20px;
+
+background: rgba(255, 255, 255, 0.9);
+
+border-radius: 25px;
+
+
+}
+
+.empty-icon {
+
+
+font-size: 60px;
+
+margin-bottom: 15px;
+
+
+}
+
+.empty h3 {
+
+
+font-size: 25px;
+
+margin-bottom: 10px;
+
+
+}
+
+.empty p {
+
+
+color: #6b7280;
+
+
+}
+
+/* ================================
+ANIMATIONS
+================================ */
+
+@keyframes fadeDown {
+
+
+from {
+    opacity: 0;
+    transform: translateY(-30px);
+}
+
+to {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+}
+
+@keyframes fadeUp {
+
+
+from {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+to {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+}
+
+@keyframes cardAppear {
+
+
+from {
+    opacity: 0;
+    transform: translateY(25px);
+}
+
+to {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+}
+
+/* ================================
+RESPONSIVE
+================================ */
+
+@media (max-width: 768px) {
+
+.container {
+    width: 92%;
+    padding: 40px 0;
+}
+
+.hero h1 {
+    font-size: 40px;
+}
+
+.upload-card {
+    padding: 25px;
+    margin-bottom: 50px;
+}
+
+.section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.section-header h2 {
+    font-size: 30px;
+}
+
+.gallery {
+    grid-template-columns:
+        repeat(auto-fill, minmax(240px, 1fr));
+}
+
+
+}
+
+@media (max-width: 480px) {
+
+
+.hero h1 {
+    font-size: 34px;
+}
+
+.hero .description {
+    font-size: 15px;
+}
+
+.upload-card {
+    padding: 20px;
+}
+
+.gallery {
+    grid-template-columns: 1fr;
+}
+
+.image-container {
+    height: 300px;
+}
+
+
 }
