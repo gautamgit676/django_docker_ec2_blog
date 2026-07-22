@@ -2,8 +2,6 @@ __pycache__/
 *.pyc
 .env
 
-
-
 # Python
 __pycache__/
 *.py[cod]
@@ -16,3 +14,5 @@ db.sqlite3
 
 # Static
 staticfiles/
+
+media/
