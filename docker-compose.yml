@@ -1,16 +1,13 @@
 services:
 
   web:
-    build: .
+    image: gautam147/djangoimagesbingo:latest
     container_name: django_blogs
 
-    # command: gunicorn --bind 0.0.0.0:8000 Djangoback.wsgi:application
-    command: gunicorn --bind 0.0.0.0:8000 --workers 3 --reload Djangoback.wsgi:application
-    
+    command: gunicorn --bind 0.0.0.0:8000 --workers 3 Djangoback.wsgi:application
+
     volumes:
-      - .:/app
       - static_volume:/app/staticfiles
-      - media_volume:/app/media
 
     expose:
       - "8000"
@@ -19,24 +16,16 @@ services:
       - .env
 
     depends_on:
-      - db
       - redis
 
+    restart: unless-stopped
 
-  db:
-    image: postgres:17
-    container_name: django_postgres
 
-    environment:
-      POSTGRES_DB: ${DB_NAME}
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
+  redis:
+    image: redis:8
+    container_name: django_redis
 
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
-    ports:
-      - "5432:5432"
+    restart: unless-stopped
 
 
   nginx:
@@ -48,22 +37,13 @@ services:
 
     volumes:
       - static_volume:/app/staticfiles
-      - media_volume:/app/media
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
 
     depends_on:
       - web
 
-
-  redis:
-    image: redis:8
-    container_name: django_redis
-
-    ports:
-      - "6379:6379"
+    restart: unless-stopped
 
 
 volumes:
-  postgres_data:
   static_volume:
-  media_volume:

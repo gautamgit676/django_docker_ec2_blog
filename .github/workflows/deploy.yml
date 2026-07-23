@@ -1,0 +1,86 @@
+name: Deploy Django to EC2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+
+  build-and-deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # 1. Checkout code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+
+      # 2. Login Docker Hub
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+
+      # 3. Build and Push Docker Image
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          platforms: linux/amd64
+          tags: gautam147/djangoimagesbingo:latest
+
+
+      # 4. Deploy to EC2
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+
+          script: |
+
+            echo "1. Go to deployment directory"
+            cd ~/django_cicd
+
+
+            echo "2. Pull latest docker-compose and nginx config"
+            git pull origin main
+
+
+            echo "3. Pull latest Docker image"
+            docker compose pull
+
+
+            echo "4. Start containers"
+            docker compose up -d
+
+
+            echo "5. Wait for application to start"
+            sleep 10
+
+
+            echo "6. Run database migrations"
+            docker compose exec -T web python manage.py migrate
+
+
+            echo "7. Collect static files"
+            docker compose exec -T web python manage.py collectstatic --noinput
+
+
+            echo "8. Restart application"
+            docker compose restart web
+
+
+            echo "9. Remove unused Docker images"
+            docker image prune -f
+
+
+            echo "10. Check containers"
+            docker compose ps
