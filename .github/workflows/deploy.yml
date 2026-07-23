@@ -47,7 +47,7 @@ jobs:
           script: |
 
             echo "1. Go to deployment directory"
-            cd ~/django_cicd
+            cd ~/django_cicd/django_docker_ec2_blog
 
 
             echo "2. Pull latest docker-compose and nginx config"
